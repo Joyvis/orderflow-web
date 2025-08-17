@@ -4,6 +4,6 @@ import UserForm from "../UserForm";
 describe("UserForm", () => {
   it("should render", () => {
     render(<UserForm />);
-    expect(screen.getByText("UserForm")).toBeInTheDocument();
+    expect(screen.getByText("User Form")).toBeInTheDocument();
   });
 });
