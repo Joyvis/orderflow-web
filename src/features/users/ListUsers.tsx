@@ -1,9 +1,8 @@
-import React from "react";
-import Button from "@/components/Button";
+import { Button } from "@/components/ui/button";
 import UsersTable from "./UsersTable";
 import useUsers from "./useUsers";
 
-const ListUsers = (): React.JSX.Element => {
+const ListUsers = () => {
   const { users } = useUsers();
 
   return (
@@ -12,7 +11,7 @@ const ListUsers = (): React.JSX.Element => {
         <h1 className="mt-2 text-5xl tracking-tight sm:text-6xl text-pretty">
           Users
         </h1>
-        <Button>New User</Button>
+        <Button variant="outline">New User</Button>
       </div>
 
       <div className="flex flex-col gap-4">
