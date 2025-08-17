@@ -1,8 +1,11 @@
 import React from "react";
 import Button from "@/components/Button";
 import UsersTable from "./UsersTable";
+import useUsers from "./useUsers";
 
 const ListUsers = (): React.JSX.Element => {
+  const { users } = useUsers();
+
   return (
     <div>
       <div className="flex justify-between items-center">
@@ -11,8 +14,10 @@ const ListUsers = (): React.JSX.Element => {
         </h1>
         <Button>New User</Button>
       </div>
-      {/* User list */}
-      <UsersTable users={[]} />
+
+      <div className="flex flex-col gap-4">
+        <UsersTable users={users} />
+      </div>
     </div>
   );
 };

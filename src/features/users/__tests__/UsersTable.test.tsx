@@ -20,6 +20,7 @@ describe('Users Table Component', () => {
             render(<UsersTable users={users} />);
             users.forEach((user) => {
                 expect(screen.getByText(user.name)).toBeInTheDocument();
+                expect(screen.getByText(user.email)).toBeInTheDocument();
             });
         });
     });

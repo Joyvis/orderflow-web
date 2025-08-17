@@ -3,6 +3,7 @@ import ListUsers from "./features/users/ListUsers";
 
 const App = (): React.JSX.Element => {
   return (
+    // REPLACE WITH SHADCN COMPONENTS IN THE FUTURE
     <div className="min-h-screen flex flex-col bg-gray-50">
       {/* Navbar placeholder */}
       <header className="h-16 bg-white shadow flex items-center px-6">
