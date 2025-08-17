@@ -12,8 +12,8 @@ describe('Users Table Component', () => {
 
     describe('when users list is not empty', () => {
         const users = [
-            { id: 1, name: 'John Doe' },
-            { id: 2, name: 'Jane Doe' },
+            { id: '1', name: 'John Doe', email: 'john.doe@example.com' },
+            { id: '2', name: 'Jane Doe', email: 'j' },
         ];
 
         test('should list users', () => {

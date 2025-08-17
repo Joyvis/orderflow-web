@@ -1,15 +1,13 @@
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import type { User } from "./User";
 
-interface UsersTableProps {
-  users: User[];
-}
-
-const UsersTable = ({ users }: UsersTableProps) => {
+const UsersTable = ({ users }: { users: User[] }) => {
   return (
     <Table>
         <TableHeader>
             <TableRow>
             <TableHead>Name</TableHead>
+            <TableHead>Email</TableHead>
             </TableRow>
         </TableHeader>
         <TableBody>
@@ -21,6 +19,7 @@ const UsersTable = ({ users }: UsersTableProps) => {
             {users.map((user) => (
                 <TableRow key={user.id}>
                     <TableCell>{user.name}</TableCell>
+                    <TableCell>{user.email}</TableCell>
                 </TableRow>
             ))}
         </TableBody>
