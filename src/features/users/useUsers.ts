@@ -1,32 +1,27 @@
-import { useState, useEffect } from "react";
-import type { User } from "./User";
+import { useQuery } from '@tanstack/react-query';
 
 // TODO: Tries useResource hook that is able to retrieve any entity
 export default function useUsers() {
-    const [users, setUsers] = useState<User[]>([]);
-    const [isLoading, setIsLoading] = useState(true);
+  // if (process.env.NODE_ENV === 'test') {
+  //   return { users: [], isLoading: false };
+  // }
 
-    // To skip this hook's logic when running tests, you can check for the test environment and early return.
-    // In React apps, NODE_ENV is often set to 'test' during testing.
-    // You can add a conditional at the top of the hook to return dummy values if process.env.NODE_ENV === 'test'.
-    // Example:
-    if (process.env.NODE_ENV === 'test') {
-        return { users: [], isLoading: false };
-    }
-    // This way, the fetch logic is skipped during tests.
+  const getUsers = async () => {
+    const response = await fetch('http://localhost:8080/api/v1/users');
+    return response.json();
+  };
 
-    useEffect(() => {
-        fetch('http://localhost:8080/api/v1/users')
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
-            .then(data => setUsers(data))
-            .catch(error => console.error('Error fetching users:', error))
-            .finally(() => setIsLoading(false));
-    }, []);
+  const query = useQuery({ queryKey: ['users'], queryFn: getUsers });
 
-    return { users, isLoading };
+  return { data: query.data, isLoading: query.isLoading };
+}
+
+export function useUser(id: string) {
+  const getUser = async () => {
+    const response = await fetch(`http://localhost:8080/api/v1/users/${id}`);
+    return response.json();
+  };
+
+  const query = useQuery({ queryKey: ['user', id], queryFn: getUser });
+  return { data: query.data, isLoading: query.isLoading };
 }
